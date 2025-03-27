@@ -15,43 +15,25 @@ include_once 'header.php';
 
             if(mysqli_num_rows($result)==0){
         ?>
-            <h1 style="margin:auto;font-size:30px;color:rgb(0, 0, 0);font-family:Arial;margin:auto;margin-top:150px">  No Records Available<br>with this user account</h1>
+            <h1 style="margin:auto;font-size:50px;color:rgb(178, 192, 180);font-family:Arial;margin-top:20vh">  No Records Available with this Email account</h1>
         <?php
         }
         while($row=mysqli_fetch_array($result)){
             $itemName = $row["itemName"];
             $status = $row["status"];
-            
+
             if ($status=="not"){
         ?>      <div class="todoitemholder">
-                    <div class="todoitem">
-                        <button class="iconHolder">
-                            <div class="todo"></div>
-                            <span class="tooltiptext">Mark as Done</span>
-                        </button>
-                        <h5 style="margin-left:30px;"><?php echo $itemName?></h5>
-                        <button class="iconHolder" style="position:absolute;right:0px;">
-                            <i class="material-icons delete">delete</i>
-                        </button>
-                    </div>
+                <a class="todoitem"href="statuspopup.php?itemId=<?php echo urlencode($row['itemId']); ?>"><?php echo $itemName?></a>
+                <div class="icon">
+                </div>
                 </div>
         <?php
             }else{
-                ?>      <div class="todoitemholder">
-                    <div class="todoitem">
-                        <button class="iconHolder">
-                            <span class="tooltiptext">Mark as notDone</span>
-                            <div class="com">
-                                <h1 style='font-family:arial;color:white;font-size:17px'>&#10004;</h1>
-                            </div>
-                        </button>
-                        <h5 style="margin-left:30px;"><?php echo $itemName?></h5>
-                        <button class="iconHolder" style="position:absolute;right:0px;">
-                            <i class="material-icons delete">delete</i>
-                        </button>
-                    </div>
+                ?><div class="todoitemholder">
+                <a class="todoitemdone" href="statuspopup.php?itemId=<?php echo urlencode($row['itemId']); ?>"><?php echo $itemName?><?php echo $itemName?></a>
                 </div>
-        <?php
+            <?php
             }
         }
     ?>

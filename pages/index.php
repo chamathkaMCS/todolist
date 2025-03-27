@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'header.php';
 ?>
 <div class="fillDiv"><h1 class="heading">ToDo List</h1></div>
