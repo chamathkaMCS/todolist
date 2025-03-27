@@ -18,8 +18,8 @@
                         echo '<div class="error"> Fill all the Fields</div>';
                     }elseif($_GET["error"] == "invalidEmail"){
                         echo '<div class="error"> invalid Email</div>';
-                    }elseif($_GET["error"] == "invalidUsername"){
-                        echo '<div class="error"> invalid username </div>';
+                    }elseif($_GET["error"] == "wrongPassword"){
+                        echo '<div class="error"> Password incorrect </div>';
                     }elseif($_GET["error"] == "userDosentExists"){
                         echo '<div class="error"> User Dosent Exists </div>';
                     }elseif($_GET["error"] == "loginSuccessfully"){

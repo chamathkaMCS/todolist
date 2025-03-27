@@ -7,9 +7,13 @@ if (isset($_POST["submit"])){
         require_once 'functions.inc.php';
 
         $signInEmpty = signinEmptyCheck($UserEmail,$password);
+        $invalidEmail = invalidEmail($UserEmail);
 
         if($signInEmpty !== false){
             header("Location:../pages/signIn.php?error=emptyInputs");
+            exit;
+        }else if($invalidEmail !== false){
+            header("Location:../pages/signIn.php?error=invalidEmail");
             exit;
         }
         LogUser($conn,$UserEmail,$password);
