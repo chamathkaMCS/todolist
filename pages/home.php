@@ -15,22 +15,23 @@ include_once 'header.php';
 
             if(mysqli_num_rows($result)==0){
         ?>
-            <h1 style="margin:auto;font-size:30px;color:rgb(0, 0, 0);font-family:Arial;margin:auto;margin-top:150px">  No Records Available<br>with this user account</h1>
+            <h1 style="margin:auto;font-size:30px;color:rgb(97, 121, 156);font-family:Arial;margin:auto;margin-top:150px">  No Records Available<br>with this user account</h1>
         <?php
         }
         while($row=mysqli_fetch_array($result)){
             $itemName = $row["itemName"];
             $status = $row["status"];
+            $itemId = $row["itemId"];
             
             if ($status=="not"){
         ?>      <div class="todoitemholder">
                     <div class="todoitem">
-                        <button class="iconHolder">
+                        <button id="status" class="iconHolder" data-itemId="<?php echo $itemId; ?>" data-status="done">
                             <div class="todo"></div>
                             <span class="tooltiptext">Mark as Done</span>
                         </button>
                         <h5 style="margin-left:30px;"><?php echo $itemName?></h5>
-                        <button class="iconHolder" style="position:absolute;right:0px;">
+                        <button id="delete" class="iconHolder" style="position:absolute;right:0px;" data-itemId="<?php echo $itemId; ?>">
                             <i class="material-icons delete">delete</i>
                         </button>
                     </div>
@@ -39,14 +40,14 @@ include_once 'header.php';
             }else{
                 ?>      <div class="todoitemholder">
                     <div class="todoitem">
-                        <button class="iconHolder">
+                        <button id="status" class="iconHolder" data-itemId="<?php echo $itemId; ?>" data-status="not">
                             <span class="tooltiptext">Mark as not Done</span>
                             <div class="com">
                                 <h1 style='font-family:arial;color:white;font-size:17px'>&#10004;</h1>
                             </div>
                         </button>
                         <h5 style="margin-left:30px;"><?php echo $itemName?></h5>
-                        <button class="iconHolder" style="position:absolute;right:0px;">
+                        <button id="delete" class="iconHolder" style="position:absolute;right:0px;" data-itemId="<?php echo $itemId; ?>">
                             <i class="material-icons delete">delete</i>
                         </button>
                     </div>
@@ -63,7 +64,6 @@ include_once 'header.php';
         let message = event.target.value.trim();
         if (message === "") return;
 
-        // Send data to the backend using fetch
         fetch("save.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -71,10 +71,10 @@ include_once 'header.php';
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result); // Log result from server
+            console.log(result);
             if (result.status === "success") {
                 console.log("Data saved successfully!");
-                location.reload(); // Refresh the page after saving data
+                location.reload();
             } else {
                 console.log("Error:", result.message);
             }
@@ -83,9 +83,52 @@ include_once 'header.php';
             console.error("Fetch error:", error);
         });
 
-        event.target.value = ""; // Clear the input after sending
-    }
-});
+        event.target.value = "";
+        }
+    });
+     document.querySelectorAll("#status").forEach(button => {
+    button.addEventListener("click", function() {
+          
+          let status = this.dataset.status;
+          let itemId = this.dataset.itemid;
+
+          fetch("statusupdate.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: "itemId=" + encodeURIComponent(itemId) + "&status=" + encodeURIComponent(status)
+          })
+        .then(response => response.text())
+        .then(data => {
+            setTimeout(function() {
+                location.reload();
+            }, 100);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+    });
+     document.querySelectorAll("#delete").forEach(button => {
+    button.addEventListener("click", function() {
+          
+          let itemId = this.dataset.itemid;
+
+          fetch("delete.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: "itemId=" + encodeURIComponent(itemId)
+          })
+        .then(response => response.text())
+        .then(data => {
+            setTimeout(function() {
+                location.reload();
+            }, 100);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+    });
 
 </script>
 <?php

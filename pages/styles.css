@@ -187,7 +187,6 @@ input[type="submit"]:hover {
 .todoitem:hover {
   color: #ffffff;
   background-color: #3c80a0;
-  transform: scale(1.05);
   transition-duration: 0.5s;
 }
 .todoitemdone {
@@ -209,8 +208,8 @@ input[type="submit"]:hover {
   text-decoration: none;
 }
 .todo {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
   left: 15px;
   background: #ffffff;
   border-radius: 100%;
@@ -221,12 +220,12 @@ input[type="submit"]:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 .com {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   left: 15px;
   background:rgb(73, 116, 151);
   border-radius: 100%;
-  border: 1px solid rgb(73, 116, 151);
+  border: 1px solid rgb(255, 255, 255);
   position: relative;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
@@ -237,6 +236,12 @@ input[type="submit"]:hover {
   width: 35px;
   height: 35px;
   color: #ff0000;
+}
+.delete:hover {
+  margin-top: 10px;
+  width: 35px;
+  height: 35px;
+  color: #ffffff;
 }
 .iconHolder {
   border: solid ;
