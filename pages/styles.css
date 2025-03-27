@@ -9,6 +9,19 @@
   flex-wrap: wrap;
   font-weight: 50;
 }
+#loader{
+  background: url(../images/loading\ 2.gif) no-repeat center center;
+  background-color: #ffffff;
+  background-size: 5%;
+  position: fixed;
+  margin:auto;
+  justify-self: center;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  
+}
 .loginHolder {
   display: flex;
   flex-wrap: wrap;

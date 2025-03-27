@@ -82,7 +82,9 @@ function createUser($conn,$UserEmail,$password,$repeatPassword){
     $passwordHashed = password_hash($password,PASSWORD_DEFAULT);
     mysqli_stmt_bind_param($stmt,"ss",$UserEmail,$passwordHashed);
     mysqli_stmt_execute($stmt);
+    session_start();
+    $userExists = userExists($conn,$UserEmail);
+    $_SESSION["userid"] = $userExists["userId"];
     header("Location:../pages/home.php");
-    logUser($conn,$companyUsername,$password);
     mysqli_stmt_close($stmt);
 }

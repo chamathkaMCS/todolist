@@ -13,3 +13,11 @@
     
   </head>
   <body style="display:flex;background-image:url('../images/bg 1_25.png'); background-size: cover;font-weight: 50;">
+    <div id="loader"></div>
+   <script>
+      var loader = document.getElementById("loader")
+      window.addEventListener("load",function () {
+        
+        loader.style.display="none";
+      })
+    </script>
