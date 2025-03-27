@@ -20,6 +20,8 @@
                         echo '<div class="error"> invalid Email</div>';
                     }elseif($_GET["error"] == "invalidUsername"){
                         echo '<div class="error"> invalid username </div>';
+                    }elseif($_GET["error"] == "userDosentExists"){
+                        echo '<div class="error"> User Dosent Exists </div>';
                     }elseif($_GET["error"] == "loginSuccessfully"){
                         echo '<div class="done"> Login Successfully </div>';
                     }elseif($_GET["error"] == "stmtFailed"){

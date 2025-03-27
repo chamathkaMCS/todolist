@@ -40,7 +40,7 @@ include_once 'header.php';
                 ?>      <div class="todoitemholder">
                     <div class="todoitem">
                         <button class="iconHolder">
-                            <span class="tooltiptext">Mark as notDone</span>
+                            <span class="tooltiptext">Mark as not Done</span>
                             <div class="com">
                                 <h1 style='font-family:arial;color:white;font-size:17px'>&#10004;</h1>
                             </div>
@@ -57,6 +57,7 @@ include_once 'header.php';
     ?>
 </div>
 <script>
+    document.getElementById("inputbox").focus();
     document.getElementById("inputbox").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         let message = event.target.value.trim();
